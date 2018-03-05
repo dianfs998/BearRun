@@ -36,6 +36,8 @@ public class SubPool
     {
         m_Parent = parent;
         m_Prefab = prefab;
+
+        m_Objects = new List<GameObject>();
     }
 
     /// <summary>
@@ -72,7 +74,7 @@ public class SubPool
     /// <param name="go">需要回收的对象</param>
     public void Unspawn(GameObject go)
     {
-        if (m_Objects.Contains(go))
+        if (Contains(go))
         {
             go.SendMessage("OnUnspawn", SendMessageOptions.DontRequireReceiver);
             go.SetActive(false);
@@ -91,5 +93,15 @@ public class SubPool
                 Unspawn(obj);
             }
         }
+    }
+
+    /// <summary>
+    /// 检查子对象池中是包含要检查的对象
+    /// </summary>
+    /// <param name="go">要检查的对象</param>
+    /// <returns>子对象池中是包含要检查的对象</returns>
+    public bool Contains(GameObject go)
+    {
+        return m_Objects.Contains(go);
     }
 }
