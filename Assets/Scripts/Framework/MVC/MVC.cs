@@ -23,8 +23,9 @@ public static class MVC
     /// 注册视图类
     /// </summary>
     /// <param name="views">试图类</param>
-    public static void RegisterViews(Views views)
+    public static void RegisterView(Views views)
     {
+        views.RegisterAttentionList();
         Views[views.Name] = views;
     }
 
@@ -33,7 +34,7 @@ public static class MVC
     /// </summary>
     /// <param name="eventName">命令名称</param>
     /// <param name="commandType">命令类型</param>
-    public static void RegisterCommand(string eventName, Type commandType)
+    public static void RegisterController(string eventName, Type commandType)
     {
         CommandsMap[eventName] = commandType;
     }
