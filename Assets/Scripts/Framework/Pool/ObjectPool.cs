@@ -9,7 +9,7 @@ public class ObjectPool : MonoSingleton<ObjectPool>
     /// <summary>
     /// 对象池资源目录
     /// </summary>
-    public static string ResourceDirectory = "";
+    public static string ResourceDirectory = "Objects";
 
     /// <summary>
     /// 资源池字典

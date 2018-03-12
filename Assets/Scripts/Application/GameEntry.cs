@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -34,6 +35,10 @@ public class GameEntry : MonoSingleton<GameEntry>
         m_ObjectPool = ObjectPool.Instance;
         m_SoundManager = SoundManager.Instance;
         m_StaticData = StaticData.Instance;
+
+        RegisterController(Consts.E_Startup, typeof(StartupController));
+
+        Instance.LoadScene(4);
     }
 
     /// <summary>
@@ -71,5 +76,15 @@ public class GameEntry : MonoSingleton<GameEntry>
     private void SendEvent(string eventName, object data)
     {
         MVC.SendCommand(eventName, data);
+    }
+
+    /// <summary>
+    /// 注册控制类
+    /// </summary>
+    /// <param name="eventName">事件名称</param>
+    /// <param name="commandType">命令类型</param>
+    private void RegisterController(string eventName, Type commandType)
+    {
+        MVC.RegisterController(eventName, commandType);
     }
 }

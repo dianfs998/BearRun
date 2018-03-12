@@ -25,6 +25,11 @@ public static class MVC
     /// <param name="views">试图类</param>
     public static void RegisterView(Views views)
     {
+        if (Views.ContainsKey(views.Name))
+        {
+            Views.Remove(views.Name);
+        }
+
         views.RegisterAttentionList();
         Views[views.Name] = views;
     }
